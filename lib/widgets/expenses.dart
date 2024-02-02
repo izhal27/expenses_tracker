@@ -19,16 +19,16 @@ class _ExpensesState extends State<Expenses> {
       category: Category.food,
     ),
     Expense(
-      title: 'Aqua Indomaret',
-      amount: 8000,
-      date: DateTime.now(),
-      category: Category.food,
-    ),
-    Expense(
-      title: 'Bakwan',
+      title: 'Kurinai Beach',
       amount: 10000,
       date: DateTime.now(),
-      category: Category.food,
+      category: Category.travel,
+    ),
+    Expense(
+      title: 'Udemy',
+      amount: 990000,
+      date: DateTime.now(),
+      category: Category.leisure,
     ),
     Expense(
       title: 'Pisgor',
