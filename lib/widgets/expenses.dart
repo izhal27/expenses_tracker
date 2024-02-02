@@ -26,7 +26,7 @@ class _ExpensesState extends State<Expenses> {
     ),
     Expense(
       title: 'Udemy',
-      amount: 990000,
+      amount: 99000,
       date: DateTime.now(),
       category: Category.leisure,
     ),
@@ -43,6 +43,12 @@ class _ExpensesState extends State<Expenses> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Expense Tracker'),
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.add),
+          )
+        ],
       ),
       body: Column(
         children: [
