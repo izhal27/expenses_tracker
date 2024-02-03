@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:uuid/uuid.dart';
 
+import 'package:expense_tracker/helpers/common.dart';
+
 const uuid = Uuid();
-final formater = DateFormat('d/M/y', 'id_id');
 
 enum Category { food, travel, leisure, work }
 
@@ -29,6 +29,6 @@ class Expense {
   final Category category;
 
   get formatedDate {
-    return formater.format(date);
+    return dateFormater.format(date);
   }
 }

@@ -1,16 +1,12 @@
+import 'package:expense_tracker/helpers/common.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
 import 'package:expense_tracker/models/expense.dart';
 
 class ExpenseItem extends StatelessWidget {
-  ExpenseItem(this.expense, {super.key});
+  const ExpenseItem(this.expense, {super.key});
 
   final Expense expense;
-
-  final NumberFormat formatter = NumberFormat.decimalPatternDigits(
-    locale: 'id_id',
-  );
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +23,7 @@ class ExpenseItem extends StatelessWidget {
             const SizedBox(height: 10),
             Row(
               children: [
-                Text('Rp${formatter.format(expense.amount)}'),
+                Text('Rp${numberFormatter.format(expense.amount)}'),
                 const Spacer(),
                 Row(
                   children: [
