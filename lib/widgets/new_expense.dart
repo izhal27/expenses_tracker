@@ -32,8 +32,6 @@ class _NewExpenseState extends State<NewExpense> {
             ),
           ),
           Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Expanded(
                 child: TextField(
@@ -47,18 +45,23 @@ class _NewExpenseState extends State<NewExpense> {
               ),
               const SizedBox(width: 14),
               Expanded(
-                  child: Row(
-                children: [
-                  const Text('Selected Date'),
-                  IconButton(
-                    onPressed: () {},
-                    icon: const Icon(Icons.calendar_month),
-                  )
-                ],
-              ))
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    const Text('Selected Date'),
+                    IconButton(
+                      onPressed: () {},
+                      icon: const Icon(Icons.calendar_month),
+                    ),
+                  ],
+                ),
+              )
             ],
           ),
+          const SizedBox(height: 15),
           Row(
+            mainAxisAlignment: MainAxisAlignment.end,
             children: [
               TextButton(
                 onPressed: () => Navigator.pop(context),
