@@ -52,6 +52,8 @@ class _ExpensesState extends State<Expenses> {
 
   @override
   Widget build(BuildContext context) {
+    _registeredExpenses.sort((a, b) => b.date.compareTo(a.date));
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Daftar Pengeluaran'),
