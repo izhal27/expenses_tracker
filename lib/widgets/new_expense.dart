@@ -4,7 +4,9 @@ import 'package:expense_tracker/models/expense.dart';
 import 'package:expense_tracker/helpers/common.dart';
 
 class NewExpense extends StatefulWidget {
-  const NewExpense({super.key});
+  const NewExpense(this.addNewExpenseHandler, {super.key});
+
+  final void Function(Expense) addNewExpenseHandler;
 
   @override
   State<NewExpense> createState() => _NewExpenseState();
@@ -21,6 +23,42 @@ class _NewExpenseState extends State<NewExpense> {
     _titleInputController.dispose();
     _amountInputController.dispose();
     super.dispose();
+  }
+
+  void _submitnNewExpense() {
+    var enteredAmount = double.tryParse(_amountInputController.text);
+    var isAmountInvalid = enteredAmount == null || enteredAmount <= 0;
+
+    if (_titleInputController.text.trim().isEmpty ||
+        isAmountInvalid ||
+        _selectedDate == null) {
+      showDialog(
+        context: context,
+        builder: (ctx) => AlertDialog(
+          title: const Text('Invalid input'),
+          content:
+              const Text('Mohon periksa kembali data yang anda masukkan..'),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: const Text('Okay'),
+            ),
+          ],
+        ),
+      );
+      return;
+    }
+
+    widget.addNewExpenseHandler(
+      Expense(
+        title: _titleInputController.text,
+        amount: enteredAmount,
+        date: _selectedDate!,
+        category: _selectedCategory,
+      ),
+    );
+
+    Navigator.pop(context);
   }
 
   void _shoWDatePicker() async {
@@ -108,9 +146,7 @@ class _NewExpenseState extends State<NewExpense> {
                 child: const Text('Cancel'),
               ),
               ElevatedButton(
-                onPressed: () {
-                  print(_titleInputController.text);
-                },
+                onPressed: _submitnNewExpense,
                 child: const Text('Save expense'),
               ),
             ],

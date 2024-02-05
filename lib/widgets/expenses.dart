@@ -26,8 +26,8 @@ class _ExpensesState extends State<Expenses> {
       category: Category.travel,
     ),
     Expense(
-      title: 'Udemy',
-      amount: 99000,
+      title: 'Neflix',
+      amount: 45000,
       date: DateTime.now(),
       category: Category.leisure,
     ),
@@ -41,14 +41,20 @@ class _ExpensesState extends State<Expenses> {
 
   void _showModalNewExpense() {
     showModalBottomSheet(
-        context: context, builder: (ctx) => const NewExpense());
+        context: context, builder: (ctx) => NewExpense(_onSubmitNewExpense));
+  }
+
+  void _onSubmitNewExpense(Expense newExpense) {
+    setState(() {
+      _registeredExpenses.add(newExpense);
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Expense Tracker'),
+        title: const Text('Daftar Pengeluaran'),
         actions: [
           IconButton(
             onPressed: _showModalNewExpense,
