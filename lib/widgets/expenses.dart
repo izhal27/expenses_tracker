@@ -53,6 +53,29 @@ class _ExpensesState extends State<Expenses> {
     });
   }
 
+  void _removeExpense(Expense item) {
+    final removedIndex = _registeredExpenses.indexOf(item);
+
+    setState(() {
+      _registeredExpenses.remove(item);
+    });
+    ScaffoldMessenger.of(context).clearSnackBars();
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        duration: const Duration(seconds: 3),
+        content: const Text('Data di hapus...'),
+        action: SnackBarAction(
+          label: 'Undo',
+          onPressed: () {
+            setState(() {
+              _registeredExpenses.insert(removedIndex, item);
+            });
+          },
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     _registeredExpenses.sort((a, b) => b.date.compareTo(a.date));
@@ -71,7 +94,10 @@ class _ExpensesState extends State<Expenses> {
         children: [
           const Text('Chart'),
           Expanded(
-            child: ExpensesList(expenses: _registeredExpenses),
+            child: ExpensesList(
+              expenses: _registeredExpenses,
+              onDismisableItem: _removeExpense,
+            ),
           ),
         ],
       ),
