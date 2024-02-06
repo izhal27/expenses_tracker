@@ -55,10 +55,8 @@ class ExpensesList extends StatelessWidget {
           ),
         ),
         confirmDismiss: (DismissDirection direction) async {
-          if (direction == DismissDirection.endToStart) {
-            final confirmed = await _confirmDeletion(context);
-            return confirmed;
-          }
+          final confirmed = await _confirmDeletion(context);
+          return confirmed;
         },
         onDismissed: (direction) {
           onDismisableItem(expenses[index]);
