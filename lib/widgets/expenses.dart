@@ -79,6 +79,21 @@ class _ExpensesState extends State<Expenses> {
   @override
   Widget build(BuildContext context) {
     _registeredExpenses.sort((a, b) => b.date.compareTo(a.date));
+    Widget mainContent = Center(
+      child: ExpensesList(
+        expenses: _registeredExpenses,
+        onDismisableItem: _removeExpense,
+      ),
+    );
+
+    if (_registeredExpenses.isEmpty) {
+      mainContent = const Center(
+        child: Text(
+          'Data masih kosong',
+          style: TextStyle(fontSize: 16),
+        ),
+      );
+    }
 
     return Scaffold(
       appBar: AppBar(
@@ -94,10 +109,7 @@ class _ExpensesState extends State<Expenses> {
         children: [
           const Text('Chart'),
           Expanded(
-            child: ExpensesList(
-              expenses: _registeredExpenses,
-              onDismisableItem: _removeExpense,
-            ),
+            child: mainContent,
           ),
         ],
       ),
